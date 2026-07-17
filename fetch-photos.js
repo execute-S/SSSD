@@ -25,7 +25,7 @@ async function run() {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
   // Download up to 10 most recent photos
-  const limit = Math.min(data.photos.length, 100);
+  const limit = Math.min(data.photos.length, 10);
   for (let i = 0; i < limit; i++) {
     const photo = data.photos[i];
     console.log(`Downloading photo ${i + 1}...`);
