@@ -1,0 +1,36 @@
+name: Auto Generate Gallery JSON
+
+on:
+  push:
+    paths:
+      - 'temple-gallery/**' # Runs only when files inside temple-gallery change
+
+permissions:
+  contents: write # Allows GitHub to save the gallery.json file back to your repo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Generate gallery.json
+      run: |
+        echo "[" > gallery.json
+        # Find all files in temple-gallery (ignoring .gitkeep), format as JSON strings
+        find temple-gallery -type f ! -name ".gitkeep" | sed 's/temple-gallery\///' | awk '{print "  \"" $0 "\","}' >> gallery.json
+        # Remove trailing comma from the last item to make it valid JSON
+        sed -i '$ s/,$//' gallery.json
+        echo "]" >> gallery.json
+        cat gallery.json
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add gallery.json
+        # Commit only if gallery.json actually changed
+        git diff-index --quiet HEAD || git commit -m "chore: auto-update gallery.json index"
+        git push
