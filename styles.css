@@ -1,0 +1,2583 @@
+/* Design System Tokens */
+:root {
+    --bg-base: #fcfaf7;
+    /* Extra light pale warm background */
+    --bg-header-nav: #f6efe2;
+    /* Solid light pale warm color for header, nav, and floating widgets */
+    --text-primary: #2d2621;
+    --text-muted: #7d7267;
+    --accent: #8c2d19;
+    /* Serene Deep Vermilion */
+    --accent-hover: #692010;
+    --accent-gold: #c4a054;
+    /* Sacred Muted Gold */
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --card-border: rgba(140, 45, 25, 0.07);
+    --card-shadow: 0 12px 30px 0 rgba(140, 45, 25, 0.03);
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Outfit', sans-serif;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #eae6df;
+    /* Desktop wrapper background */
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    -webkit-touch-callout: none; /* Prevent long-press menu on iOS */
+    -webkit-user-select: none;   /* Prevent image selection */
+    user-select: none;
+    -webkit-user-drag: none;     /* Prevent dragging */
+}
+
+
+/* Mobile App Screen Frame (Centered on Desktop, Full-Width on Mobile) */
+.content-wrapper {
+    width: 100%;
+    max-width: 480px;
+    /* Constrain to mobile width */
+    min-height: 100vh;
+    background-color: var(--bg-base);
+    box-shadow: 0 0 50px rgba(45, 38, 33, 0.12);
+    position: relative;
+    padding-bottom: 0;
+}
+
+.container {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.desktop-middle-column {
+    display: contents;
+}
+
+/* Permanent Shrinking Header */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 50vh;
+    /* Starts at half screen */
+    z-index: 1000;
+    background: var(--bg-header-nav);
+    border-bottom: 1px solid var(--card-border);
+    transition: box-shadow 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(140, 45, 25, 0.04);
+}
+
+.nav-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Header Large (Initially visible) */
+.header-large {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Vertical column layout in top bar extended state */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    opacity: 1;
+    will-change: opacity, transform;
+    visibility: visible;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+/* Rangoli Edge Art (Visible only in expanded/large state) */
+.rangoli-edge {
+    position: absolute;
+    top: 10px;
+    height: 36vh;
+    max-height: 300px;
+    min-height: 200px;
+    width: auto;
+    opacity: 0; /* Starts hidden, animated via keyframes */
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(140, 45, 25, 0.08));
+    animation: rangoliFadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1.5s both;
+    transition: opacity 0.3s ease;
+}
+
+.rangoli-left {
+    left: -20px;
+    transform: scaleX(-1); /* Mirror horizontally so flat edge is on left, curves point inwards */
+}
+
+.rangoli-right {
+    right: -20px; /* Flat edge is already on the right, curves point inwards */
+}
+
+@keyframes rangoliFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.28; /* Subtle watermark opacity */
+    }
+}
+
+
+
+.large-logo {
+    width: 170px; /* Increased end-state logo size from 130px for better text balance */
+    height: 170px;
+    flex-shrink: 0;
+    position: relative; /* Anchor for high-res absolute child */
+    margin-bottom: 20px; /* Space between logo and name text below it */
+    animation: logoMoveSeq 3.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s both;
+}
+
+.large-logo .logo-img {
+    position: absolute;
+    width: 300px; /* Render at full 300px size initially to fill the 50vh top bar container height */
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(140, 45, 25, 0.14));
+    transform-origin: center center;
+    animation: logoSpinSeq 3.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s both;
+}
+
+.large-name {
+    font-family: var(--font-heading);
+    font-size: 1.65rem; /* Large, bold, prominent text */
+    font-weight: 500; /* Increased from 400 to 500 (Medium) as requested */
+    line-height: 1.35;
+    color: rgba(140, 45, 25, 0.94); /* Theme color */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center; /* Center justified */
+    margin: 0;
+    opacity: 0;
+    white-space: normal;
+    animation: nameFadeInSeq 3.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s both;
+}
+
+.kannada-name {
+    font-family: "Benne", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.75rem; /* Increased size still more for maximum readability */
+    line-height: 1.45;
+    color: rgba(140, 45, 25, 0.94); /* Styled in the dark red theme color matching the main name */
+    margin-top: 12px;
+    text-align: center; /* Center justified */
+    opacity: 0;
+    white-space: normal;
+    animation: nameFadeInSeq 3.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s both;
+}
+
+/* Animations for loading sequence */
+@keyframes logoMoveSeq {
+    0% {
+        /* Centered vertically in the 50vh top bar container */
+        transform: translate3d(0, 15px, 0);
+    }
+    40% {
+        /* Holds position while spinning */
+        transform: translate3d(0, 15px, 0);
+    }
+    68% {
+        /* Scales and moves up towards top of header to make space for name below */
+        transform: translate3d(0, -10px, 0);
+    }
+    100% {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
+@keyframes logoSpinSeq {
+    0% {
+        /* Starts at 180deg (back side), scale(1) represents full 300px sharp rendering */
+        /* Keeps logo in a darker, bolder red theme color filter throughout the animation */
+        transform: translate3d(-50%, -50%, 0) scale(1) perspective(600px) rotateY(180deg);
+        filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%) opacity(1);
+    }
+    40% {
+        /* Spins to face user normally in dark red theme color */
+        transform: translate3d(-50%, -50%, 0) scale(1) perspective(600px) rotateY(0deg);
+        filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%) opacity(1);
+    }
+    68% {
+        /* Scales down to 0.567 (300px * 0.567 = 170px) cleanly without losing detail */
+        transform: translate3d(-50%, -50%, 0) scale(0.567) perspective(600px) rotateY(0deg);
+        filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%) opacity(1);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(0.567) perspective(600px) rotateY(0deg);
+        filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%) opacity(1);
+    }
+}
+
+@keyframes nameFadeInSeq {
+    0% {
+        opacity: 0;
+        max-height: 0px;
+        transform: translate3d(0, 20px, 0); /* Slides up from below */
+        overflow: hidden;
+    }
+    55% {
+        opacity: 0;
+        max-height: 0px;
+        transform: translate3d(0, 20px, 0);
+        overflow: hidden;
+    }
+    78% {
+        opacity: 1;
+        max-height: 150px;
+        transform: translate3d(0, 0, 0); /* Moves to final centered place below logo */
+        overflow: visible;
+    }
+    100% {
+        opacity: 1;
+        max-height: 150px;
+        transform: translate3d(0, 0, 0);
+        overflow: visible;
+    }
+}
+
+/* Header Small (Fades in on scroll) */
+.header-small {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduced gap from 12px for tight horizontal alignment */
+    width: 100%;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(15px);
+    visibility: hidden;
+    will-change: opacity, transform;
+}
+
+.small-logo {
+    width: 48px; /* Increased from 38px for consistency */
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.small-logo .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: static;
+    filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%) opacity(1);
+}
+
+.small-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem; /* Reduced from 1.22rem so it fits in 2 lines inside the 80px bar */
+    font-weight: 500; /* Adjusted to 500 (Medium) as requested */
+    line-height: 1.25; /* Allow tight multi-line wrapping next to the logo */
+    color: rgba(140, 45, 25, 0.94); /* Theme color */
+    letter-spacing: 0.2px;
+    white-space: normal; /* Allow wrapping (no single-line truncation) */
+    text-transform: uppercase;
+    text-align: left;
+    max-width: 300px;
+}
+
+/* Active shrink state managed via JS */
+
+/* Main Content Wrappers & Spacers */
+.header-spacer {
+    height: 50vh;
+    /* Matches initial header height */
+    width: 100%;
+}
+
+/* Sections styling */
+.mobile-section {
+    padding: 40px 0 20px 0;
+    display: none;
+    /* Controlled by active class */
+    animation: fadeInTab 0.4s ease-out;
+}
+
+.mobile-section.active-section {
+    display: block;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(140, 45, 25, 0.05);
+    border: 1px solid rgba(140, 45, 25, 0.12);
+    color: var(--accent);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.sacred-heading {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.sacred-lead {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+}
+
+.glass-card.compact {
+    padding: 16px;
+}
+
+.highlight-time {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.card-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.card-text-small {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Guidelines */
+.guideline-header {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 8px;
+    color: var(--accent);
+}
+
+.guideline-list-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.guideline-list-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 16px;
+    line-height: 1.5;
+}
+
+.guideline-list-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+}
+
+/* Album Section Masonry Grid */
+.album-grid {
+    column-count: 2; /* 2 columns masonry grid on mobile views */
+    column-gap: 12px;
+    width: 100%;
+}
+
+.album-card {
+    display: inline-block; /* Required for column masonry stability */
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 12px; /* Margin below each item in masonry column */
+    break-inside: avoid; /* Prevent splitting card across columns */
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+
+.album-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(140, 45, 25, 0.08);
+}
+
+.album-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.album-img-placeholder {
+    width: 100%;
+    background: rgba(196, 160, 84, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Dynamic heights for Masonry structure */
+.album-img-placeholder.h-short { height: 120px; }
+.album-img-placeholder.h-medium { height: 170px; }
+.album-img-placeholder.h-tall { height: 220px; }
+.album-img-placeholder.h-extratall { height: 260px; }
+
+.album-svg {
+    width: 48px;
+    height: 48px;
+}
+
+.album-info {
+    padding: 14px 16px;
+}
+
+.album-info h4 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.album-info span {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Poojas Section Calendar */
+.pooja-calendar-card {
+    padding: 24px;
+    margin-bottom: 24px;
+    background: var(--card-bg);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 8px;
+}
+
+.calendar-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calendar-nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.2s;
+    outline: none;
+}
+
+.calendar-nav-btn:hover {
+    color: var(--accent);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    text-align: center;
+}
+
+.calendar-day-header {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    padding-bottom: 6px;
+}
+
+.calendar-day-cell {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 6px 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    position: relative; /* Setup positioning context for tooltips & dots */
+}
+
+.calendar-day-cell:hover {
+    background: rgba(140, 45, 25, 0.08);
+    color: var(--accent);
+}
+
+.calendar-day-cell.today {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(140, 45, 25, 0.25);
+}
+
+.calendar-day-cell.empty {
+    cursor: default;
+    background: transparent;
+}
+
+.calendar-day-cell.has-pooja {
+    background: rgba(140, 45, 25, 0.08); /* Pale background color circle */
+    color: var(--accent); /* Accent vermilion text color */
+    font-weight: 700; /* Bold date number */
+    border: 1px solid rgba(140, 45, 25, 0.32); /* Ring outline border */
+}
+
+.calendar-day-cell.has-pooja:hover {
+    background: rgba(140, 45, 25, 0.16);
+}
+
+.calendar-day-cell.today.has-pooja {
+    background: var(--accent);
+    color: #ffffff;
+    border: 1.5px solid var(--accent-gold);
+}
+
+.calendar-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(45, 38, 33, 0.95);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 1010;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    animation: fadeInTooltip 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.calendar-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(45, 38, 33, 0.95);
+}
+
+@keyframes fadeInTooltip {
+    from { opacity: 0; transform: translateX(-50%) translateY(0); }
+    to { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+}
+
+.seva-date-display {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(140, 45, 25, 0.04);
+    border: 1px solid var(--card-border);
+    padding: 6px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    width: 115px;
+    box-sizing: border-box;
+}
+
+.seva-date-select {
+    padding: 6px 24px 6px 12px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    outline: none;
+    width: 115px;
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%238c2d19' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.seva-date-select option {
+    background-color: #2b221d; /* Solid dark color matching temple theme card backgrounds */
+    color: #ffffff;
+}
+
+/* Poojas Seva Group Cards */
+.pooja-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.seva-group-card {
+    padding: 24px 20px;
+    background: var(--card-bg);
+}
+
+.seva-group-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--card-border);
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+}
+
+.seva-list-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.seva-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(140, 45, 25, 0.08);
+    gap: 12px;
+}
+
+.seva-item-row:last-child {
+    border-bottom: none;
+}
+
+.seva-info {
+    flex: 1;
+    min-width: 130px;
+}
+
+.seva-name {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.seva-price {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 3px;
+    display: block;
+}
+
+.seva-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.seva-date-picker {
+    padding: 6px 8px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    outline: none;
+    width: 115px;
+    box-sizing: border-box;
+}
+
+.seva-book-btn {
+    background-color: #b0aba8; /* Warm grey shade to indicate temporarily inactive status */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: not-allowed;
+    position: relative; /* Setup positioning context for tooltip */
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.seva-book-btn:hover {
+    background-color: #9c9794; /* Slightly darker grey on hover */
+}
+
+/* Coming Soon Tooltip Pop */
+.seva-book-btn::after {
+    content: "This feature will be enabled soon";
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: rgba(45, 38, 33, 0.95);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+}
+
+.seva-book-btn::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    border: 6px solid transparent;
+    border-top-color: rgba(45, 38, 33, 0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.seva-book-btn:hover::after,
+.seva-book-btn:hover::before,
+.seva-book-btn:focus::after,
+.seva-book-btn:focus::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 400px) {
+    .seva-item-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .seva-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .seva-date-picker {
+        flex: 1;
+    }
+    .seva-book-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* eBook Coming Soon Card */
+.ebook-coming-soon {
+    text-align: center;
+    padding: 40px 24px;
+    margin: 24px auto 0 auto;
+}
+
+.ebook-coming-soon h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.ebook-coming-soon p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Permanent Bottom Navigation Bar */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 90px;
+    background: var(--bg-header-nav);
+    border-top: 1px solid var(--card-border);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-muted);
+    gap: 4px;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.icon-wrapper {
+    width: 70px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 21px;
+    transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1), color 0.3s ease;
+}
+
+.nav-icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease;
+}
+
+.nav-label {
+    font-size: 0.82rem; /* Enlarged from 0.7rem */
+    font-weight: 600; /* Medium bold for readability */
+    letter-spacing: 0.2px;
+    transition: color 0.3s ease;
+}
+
+/* Active Navigation Tab Style (Pill Style matches Image) */
+.bottom-nav-item.active {
+    color: var(--accent);
+}
+
+.bottom-nav-item.active .icon-wrapper {
+    background-color: rgba(140, 45, 25, 0.08);
+    /* Pale background behind active icon */
+    color: var(--accent);
+}
+
+.bottom-nav-item.active .nav-icon {
+    transform: scale(1.05);
+}
+
+.bottom-nav-item.active .nav-label {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Social Expandable Widget */
+.social-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 110px;
+    /* Sits directly above bottom navigation bar */
+    width: 72px;
+    height: 72px;
+    z-index: 1005;
+    transition: all 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Smooth decelerating transition */
+}
+
+/* Keep the widget locked to the right side of the centered mobile layout if the screen is wider than 480px */
+@media (min-width: 480px) {
+    .social-widget:not(.active) {
+        right: auto;
+        left: calc(50% + 148px); /* Center line + half of layout width (240px) - side offset (20px) - widget width (72px) */
+    }
+}
+
+/* Active class expands the entire widget to screen width (centered) */
+.social-widget.active {
+    bottom: 102px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 456px;
+    height: 174px;
+    /* Taller card accommodates larger icons and text */
+    right: auto;
+}
+
+/* Expanded social menu card (morphs with the parent container) */
+.social-menu-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    background-color: #f6efe2;
+    /* Solid parchment theme */
+    border: 1px solid var(--card-border);
+    box-shadow: 0 6px 20px rgba(140, 45, 25, 0.1);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, visibility 0.22s ease, border-radius 0.38s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1006;
+}
+
+.social-widget.active .social-menu-card {
+    opacity: 1;
+    visibility: visible;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(140, 45, 25, 0.18);
+}
+
+/* Square Rounded Floating Action Button */
+.social-trigger-btn {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #e4c582, #c4a054); /* Metallic Gold Gradient */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Subtle white border overlay */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(196, 160, 84, 0.35);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1005;
+}
+
+.social-trigger-btn:hover {
+    box-shadow: 0 8px 24px rgba(196, 160, 84, 0.55);
+    transform: translateY(-2px); /* Lift slightly on hover */
+}
+
+.social-widget.active .social-trigger-btn {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.cycling-icons {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.cycle-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    color: #ffffff; /* White icons to stand out clearly on the gold gradient */
+}
+
+.cycle-icon.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.widget-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.close-icon {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8) rotate(-45deg);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    color: var(--accent);
+}
+
+.social-trigger-btn.active .cycling-icons {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.social-trigger-btn.active .close-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+/* Card Body styles (now spans full card height since header is removed) */
+.social-card-body {
+    padding: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.social-view-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.social-view-whatsapp {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centered vertically for elegant balance */
+    gap: 12px;
+    /* Gap between stacked buttons */
+}
+
+/* Row 1: Social Grid (5 columns) */
+.social-row-1-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.grid-social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    gap: 6px;
+    /* Increased gap */
+    transition: transform 0.2s ease;
+}
+
+.grid-social-item:hover {
+    transform: translateY(-2px);
+}
+
+.grid-icon-circle {
+    width: 48px;
+    /* Enlarged from 40px */
+    height: 48px;
+    /* Enlarged from 40px */
+    border-radius: 50%;
+    background: rgba(196, 160, 84, 0.06);
+    border: 1px solid rgba(196, 160, 84, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    transition: all 0.2s ease;
+}
+
+.grid-social-item:hover .grid-icon-circle {
+    background: rgba(140, 45, 25, 0.08);
+    border-color: var(--accent-gold);
+    color: var(--accent-hover);
+}
+
+.row-icon-svg {
+    width: 22px;
+    /* Enlarged from 18px */
+    height: 22px;
+    /* Enlarged from 18px */
+}
+
+.grid-social-label {
+    font-size: 0.72rem;
+    /* Enlarged from 0.65rem */
+    font-weight: 600;
+    /* Made highly visible and readable */
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Row 2: WhatsApp & Call Action buttons (identical styling) */
+.social-row-2-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.row-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Wider gap for larger elements */
+    padding: 16px 0;
+    /* Taller padding */
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    /* Enlarged text size */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1.5px solid var(--accent);
+    /* Reverted to plain vermilion outline */
+    color: var(--accent);
+    /* Reverted to plain vermilion text */
+    box-shadow: none;
+    outline: none;
+}
+
+.row-action-btn:hover {
+    background-color: rgba(140, 45, 25, 0.05);
+    /* Soft vermilion hover highlight */
+    transform: translateY(-1.5px);
+}
+
+.btn-icon-svg {
+    width: 24px;
+    /* Enlarged from 20px */
+    height: 24px;
+    /* Enlarged from 20px */
+}
+
+/* Animations */
+@keyframes pulseLogo {
+
+    0%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px rgba(140, 45, 25, 0));
+    }
+
+    50% {
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 10px rgba(140, 45, 25, 0.1));
+    }
+}
+
+@keyframes fadeInTab {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- New Content Sections --- */
+
+/* 1. Photos Slideshow rounded corner space */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: var(--card-shadow);
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+/* Monochromatic gradients simulating elegant slideshow states */
+.slide-img-1 {
+    background: linear-gradient(to bottom, rgba(45, 38, 33, 0.1), rgba(45, 38, 33, 0.75)), #8c2d19;
+}
+
+.slide-img-2 {
+    background: linear-gradient(to bottom, rgba(45, 38, 33, 0.1), rgba(45, 38, 33, 0.75)), #c4a054;
+}
+
+.slide-img-3 {
+    background: linear-gradient(to bottom, rgba(45, 38, 33, 0.1), rgba(45, 38, 33, 0.75)), #542218;
+}
+
+.slide-caption {
+    font-family: var(--font-heading);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+}
+
+.slideshow-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background: #fff;
+}
+
+.slideshow-album-btn {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.slideshow-album-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateX(-50%) translateY(-1px);
+}
+
+/* 2. Notice Board (Rounded corner card) */
+.notice-board-card {
+    padding: 20px;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+.notice-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.notice-indicator {
+    font-size: 0.65rem;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.notice-list-container {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notice-list-container li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-bottom: 1px dashed rgba(140, 45, 25, 0.06);
+    padding-bottom: 10px;
+}
+
+.notice-list-container li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.bullet-notice {
+    color: var(--accent-gold);
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.notice-item-content {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+}
+
+.notice-item-content strong {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* 3. Timings (No card style) */
+.timings-block-no-card {
+    margin: 40px 0;
+    padding: 0 8px;
+}
+
+.timings-block-title,
+.trust-works-title,
+.purohits-section-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 18px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+.timings-block-title::after,
+.trust-works-title::after,
+.purohits-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-gold);
+}
+
+.timings-content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.timings-column {
+    border-left: 2px solid var(--accent-gold);
+    padding-left: 14px;
+}
+
+.timing-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.timing-time {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.abhisheka-announcement {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 4. About the Temple (Rounded card with expander) */
+.card-title-sacred {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 6px;
+}
+
+.about-text-container {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: justify; /* Justify text */
+}
+
+.about-text-container p {
+    margin-bottom: 10px;
+}
+
+.about-extended-text {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.about-temple-card.expanded .about-extended-text {
+    max-height: 250px;
+    opacity: 1;
+}
+
+.read-more-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    padding: 4px 0;
+    display: inline-block;
+    transition: color 0.2s ease;
+}
+
+.read-more-btn:hover {
+    color: var(--accent-hover);
+}
+
+/* 5. Poojas preview (Rounded card style with button) */
+.card-text-body {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: justify; /* Justify text */
+}
+
+.pooja-dates-btn {
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.pooja-dates-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* 6. Temple Trust Works (No card style) */
+.trust-works-no-card {
+    margin: 40px 0;
+    padding: 0 8px;
+}
+
+.trust-works-description {
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+    text-align: justify; /* Justify text */
+}
+
+/* 7. Temple Purohits (Image placeholders + description) */
+.purohits-section {
+    margin: 40px 0;
+    padding: 0 8px;
+}
+
+.purohits-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.purohit-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    align-items: center;
+    margin-bottom: 0;
+    /* Override standard glass-card spacing */
+}
+
+.purohit-avatar-space {
+    flex-shrink: 0;
+}
+
+.purohit-avatar {
+    width: 130px; /* Enlarged further to 130px * 130px as requested */
+    height: 130px;
+    border-radius: 20px; /* Adjusted rounded corners to match the larger size */
+    background: rgba(196, 160, 84, 0.08);
+    border: 1.5px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+    overflow: hidden; /* Ensure image conforms to rounded border */
+}
+
+.purohit-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover and scale image cleanly */
+}
+
+.purohit-avatar-svg {
+    width: 30px;
+    height: 30px;
+}
+
+.purohit-description-space {
+    flex: 1;
+}
+
+.purohit-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.purohit-bio {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    font-weight: 300;
+}
+
+/* 8. Trust Details & Contribution (Embossed Real Wood Card) */
+.dark-accent-card {
+    position: relative;
+    border-radius: 44px;
+    /* More rounded pebble-like corners matching user wood card */
+    padding: 32px 24px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    max-width: 480px; /* Limit width on desktop to match mobile proportions */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wood-card {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%), url('wood_texture.jpg');
+    background-size: cover;
+    background-position: center;
+    border: none;
+    /* Removed outline stroke */
+    /* Pronounced 3D embossed border bevel highlights with subtle, grounded drop shadow */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45),
+        inset 6px 6px 12px rgba(255, 255, 255, 0.38),
+        inset -6px -6px 12px rgba(0, 0, 0, 0.75),
+        inset 0 0 30px rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+    /* Replaced gold with clean white */
+}
+
+.trust-title-large {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    /* Removed bold font */
+    text-align: center;
+    color: #ffffff;
+    /* Light color */
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    /* Soft divider */
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+}
+
+.trust-legal-address {
+    font-size: 0.82rem;
+    text-align: center;
+    color: #f7f1e5;
+    /* Soft light cream text */
+    margin-bottom: 24px;
+    line-height: 1.45;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    /* Removed bold */
+}
+
+.trust-bank-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.bank-row-detail {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    /* Soft separator */
+    padding-bottom: 8px;
+    font-size: 0.88rem;
+}
+
+.bank-row-detail:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    opacity: 0.85;
+    font-weight: 400;
+    /* Removed bold */
+    color: #f3ece0;
+    /* Light cream label */
+}
+
+.info-value {
+    font-weight: 400;
+    /* Removed bold */
+    text-align: right;
+    word-break: break-all;
+    color: #ffffff;
+    /* White value text */
+}
+
+.branch-label {
+    opacity: 0.7;
+    font-size: 0.76rem;
+    font-weight: 400;
+    color: #ded1b8; /* A beautiful, matching soft cream color for wood card context */
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.trust-donations-grid {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Translucent Glass Buttons matching view album style */
+.donation-action-btn {
+    flex: 1;
+    padding: 14px 0;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    text-align: center;
+}
+
+.donation-action-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3),
+        0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+.donation-action-btn:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(0.5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.trust-devotion-notice {
+    font-size: 0.78rem;
+    font-style: italic;
+    text-align: center;
+    color: #f3ece0;
+    /* Soft light cream text */
+    line-height: 1.4;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    /* Soft divider */
+    padding-top: 16px;
+    margin-top: 10px;
+}
+
+/* Media Queries for Desktop layout frame wrapper */
+@media (max-width: 480px) {
+    body {
+        background-color: var(--bg-base);
+    }
+
+    .content-wrapper {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .navbar {
+        max-width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .bottom-nav {
+        max-width: 100%;
+        left: 0;
+        transform: none;
+    }
+}
+
+/* Home Page Section & Card Text Justification */
+.about-text-container p,
+.poojas-card .card-text-body,
+.trust-works-no-card .trust-works-description {
+    text-align: justify;
+}
+
+/* Album Card Image Link Wrapper */
+.album-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    outline: none;
+}
+
+/* View More Images Button styling */
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(140, 45, 25, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+    animation: gentle-pulse 2.2s infinite ease-in-out;
+}
+
+.view-more-btn:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 6px 22px rgba(140, 45, 25, 0.4);
+    transform: translateY(-2px);
+}
+
+.view-more-btn:hover .btn-arrow-icon {
+    transform: translateX(4px);
+}
+
+.btn-arrow-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+@keyframes gentle-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(140, 45, 25, 0.25);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 5px 22px rgba(140, 45, 25, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(140, 45, 25, 0.25);
+    }
+}
+
+/* Site Footer styling */
+.site-footer {
+    background-color: rgba(246, 239, 226, 0.35); /* Translucent soft parchment background (intensity reduced by ~65%) */
+    border-top: 1px solid rgba(140, 45, 25, 0.15); /* Soft light vermilion border at the top */
+    padding: 32px 0 120px 0; /* Add bottom padding so the footer extends behind the bottom nav bar */
+    margin-top: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left; /* Left justified content */
+}
+
+.footer-copyright-text {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 400; /* Removed bold font weight */
+    transition: color 0.2s ease, transform 0.2s ease;
+    width: fit-content;
+}
+
+.footer-contact-link:hover {
+    color: var(--accent-hover);
+    transform: translateX(2px);
+}
+
+.footer-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+}
+
+.footer-identity-section {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Move temple name close to logo in the footer */
+    margin-top: 10px;
+    border-top: 1px dashed rgba(140, 45, 25, 0.15);
+    padding-top: 16px;
+}
+
+.footer-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: invert(15%) sepia(70%) saturate(3500%) hue-rotate(345deg) brightness(72%) contrast(100%);
+    /* Same color filter as the small header logo */
+    margin-left: -10px; /* Shift the logo further to the left */
+}
+
+.footer-name-container {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgba(140, 45, 25, 0.94);
+    text-transform: uppercase;
+}
+
+.footer-name-line {
+    white-space: nowrap;
+}
+
+/* Social trigger button gold glow pulse animation */
+@keyframes gold-glow-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(196, 160, 84, 0.5), 0 4px 15px rgba(196, 160, 84, 0.2);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(196, 160, 84, 0), 0 4px 15px rgba(196, 160, 84, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(196, 160, 84, 0), 0 4px 15px rgba(196, 160, 84, 0.2);
+    }
+}
+
+/* Hide desktop header and footer by default on mobile devices */
+#header-desktop,
+.desktop-footer {
+    display: none;
+}
+
+/* Media Queries for Desktop Widescreen Layout */
+@media (min-width: 1024px) {
+    html {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    body {
+        background-color: #eae6df;
+        align-items: flex-start;
+        padding: 0;
+        overflow: hidden; /* Prevent page-wide scroll on desktop */
+        height: 100vh;
+    }
+
+    /* Widescreen Content Layout Frame */
+    .content-wrapper {
+        max-width: 100%; /* Use 100% of the desktop screen width */
+        min-height: 100vh;
+        width: 100%;
+        margin: 0; /* Align directly to the viewport edges */
+        background-color: transparent;
+        box-shadow: none;
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 3fr); /* Proportions: Left 30%, Middle 40%, Right 30% */
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "poojas hero album";
+        gap: 32px; /* Balanced gap between columns */
+        padding: 140px 48px 72px 48px; /* Balanced padding below floating navbar and above bottom footer */
+        box-sizing: border-box;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        padding: 0; /* Padding is handled by grid margins */
+        width: 100%;
+    }
+
+    /* Disable mobile layouts and widget elements */
+    .bottom-nav {
+        display: none !important;
+    }
+    .social-widget {
+        display: none !important;
+    }
+    .header-spacer {
+        display: none !important;
+    }
+
+    /* Enable independent scrolling for left, middle, and right columns */
+    #poojas {
+        grid-area: poojas;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        height: calc(100vh - 212px); /* Fit exactly inside viewport (100vh - 140px top - 72px bottom) */
+        overflow-y: auto;
+        overscroll-behavior-y: contain; /* Prevents scroll chaining to the parent */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(140, 45, 25, 0.2) transparent;
+        padding-right: 24px; /* Give the scrollbar some spacing from the content */
+    }
+    .desktop-middle-column {
+        grid-area: hero;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 212px); /* Fit exactly inside viewport (100vh - 140px top - 72px bottom) */
+        overflow-y: auto;
+        overscroll-behavior-y: contain; /* Prevents scroll chaining to the parent */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(140, 45, 25, 0.2) transparent;
+        padding-right: 24px; /* Give the scrollbar some spacing from the content */
+    }
+    #hero {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+    #album {
+        grid-area: album;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        height: calc(100vh - 212px); /* Fit exactly inside viewport (100vh - 140px top - 72px bottom) */
+        overflow-y: auto;
+        overscroll-behavior-y: contain; /* Prevents scroll chaining to the parent */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(140, 45, 25, 0.2) transparent;
+        padding-right: 24px; /* Give the scrollbar some spacing from the content */
+    }
+    #ebook {
+        display: none !important; /* Swapped dynamically via class */
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+    .site-footer {
+        display: none !important; /* Hidden on desktop in favor of fixed bottom footer */
+    }
+
+    /* Custom scrollbars for desktop columns */
+    #poojas::-webkit-scrollbar,
+    .desktop-middle-column::-webkit-scrollbar,
+    #album::-webkit-scrollbar {
+        width: 6px;
+    }
+    #poojas::-webkit-scrollbar-track,
+    .desktop-middle-column::-webkit-scrollbar-track,
+    #album::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    #poojas::-webkit-scrollbar-thumb,
+    .desktop-middle-column::-webkit-scrollbar-thumb,
+    #album::-webkit-scrollbar-thumb {
+        background-color: rgba(140, 45, 25, 0.15);
+        border-radius: 3px;
+    }
+    #poojas::-webkit-scrollbar-thumb:hover,
+    .desktop-middle-column::-webkit-scrollbar-thumb:hover,
+    #album::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(140, 45, 25, 0.3);
+    }
+
+    /* Fluid responsive wrapping for Puja and Seva list rows */
+    .seva-item-row {
+        flex-wrap: wrap !important;
+        gap: 8px 12px !important;
+    }
+    .seva-info {
+        flex: 1 1 150px !important;
+    }
+    .seva-actions {
+        flex: 1 1 200px !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+    .seva-date-picker {
+        flex: 1 1 100px !important;
+        width: auto !important;
+    }
+    .seva-book-btn {
+        flex: 1 1 100px !important;
+        width: auto !important;
+        text-align: center;
+    }
+
+    /* Handle home and eBook view toggle in the middle column */
+    body.show-ebook #hero {
+        display: none !important;
+    }
+    body.show-ebook #ebook {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Hide slide show on desktop version */
+    .slideshow-container {
+        display: none !important;
+    }
+
+    /* Customize navbar as a top rounded corner floating panel on desktop */
+    .navbar {
+        position: fixed;
+        top: 20px;
+        left: 48px;
+        right: 48px;
+        transform: none;
+        width: auto;
+        max-width: none;
+        height: 100px; /* Floating bar height */
+        border-radius: 20px; /* Rounded corner rectangle floating */
+        background: rgba(246, 239, 226, 0.95); /* Translucent soft parchment */
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(140, 45, 25, 0.15); /* Floating border outline */
+        box-shadow: 0 8px 32px rgba(140, 45, 25, 0.08);
+        padding: 0 32px; /* Pad content inside the floating block */
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-between;
+        overflow: visible; /* Allows dropdown menu visibility */
+        transition: none; /* Prevent scroll resize shifts */
+    }
+    .navbar.scrolled {
+        box-shadow: 0 12px 40px rgba(140, 45, 25, 0.12);
+    }
+
+    .nav-container {
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Hide mobile headers */
+    #header-large, #header-small {
+        display: none !important;
+    }
+
+    /* Display desktop header bar */
+    #header-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Left header panel */
+    .desktop-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+    }
+    .desktop-logo {
+        width: 76px; /* Optimized for 100px floating bar height */
+        height: 76px;
+        object-fit: contain;
+        /* Exact color match filter for brand maroon color #8c2d19 */
+        filter: brightness(0) saturate(100%) invert(20%) sepia(60%) saturate(2500%) hue-rotate(345deg) brightness(75%) contrast(92%) drop-shadow(0 2px 4px rgba(140, 45, 25, 0.12));
+        animation: logoFadeInDesktop 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    .desktop-title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px; /* Increased spacing between Kannada and English titles */
+        animation: titleFadeInDesktop 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s both;
+    }
+    .desktop-kannada-name {
+        font-family: "Benne", serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        font-style: normal;
+        color: var(--accent); /* Maroon red */
+        line-height: 1.2;
+    }
+    .desktop-english-name {
+        font-family: var(--font-heading);
+        font-size: 1.15rem;
+        font-weight: 500; /* Adjusted to 500 (Medium) as requested */
+        color: var(--accent); /* Changed English title to maroon red as requested */
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    /* Right header panel */
+    .desktop-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* eBook navigation button (plain icon+label style to match user design) */
+    .desktop-ebook-btn {
+        background-color: transparent !important;
+        border: none !important;
+        color: #7c7365; /* Elegant charcoal/brown-grey color matching mockup design */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        outline: none;
+        width: auto;
+        height: auto;
+        padding: 0;
+        box-shadow: none !important;
+        border-radius: 0;
+    }
+    .desktop-ebook-btn:hover {
+        opacity: 0.8;
+        transform: translateY(-1px);
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+    body.show-ebook .desktop-ebook-btn {
+        color: var(--accent) !important;
+        background: transparent !important;
+    }
+    .desktop-btn-icon {
+        width: 44px; /* Larger plain icon */
+        height: 44px;
+        fill: currentColor;
+    }
+    .desktop-btn-label {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: none; /* normal capitalization, e.g. eBook */
+        letter-spacing: 0px;
+        margin-top: 1px;
+        color: inherit;
+    }
+
+    /* Integrated Social dropdown */
+    .desktop-social-container {
+        position: relative;
+    }
+    .desktop-social-trigger {
+        width: 68px; /* Increased size as requested */
+        height: 68px;
+        border-radius: 16px; /* square rounded corner */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #e4c582, #c4a054);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(196, 160, 84, 0.3);
+        transition: all 0.3s ease;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+    }
+    .desktop-social-trigger:hover {
+        box-shadow: 0 6px 16px rgba(196, 160, 84, 0.55);
+        transform: translateY(-2px);
+    }
+    .desktop-social-trigger .cycling-icons {
+        position: relative;
+        width: 32px; /* Increased icon box size */
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .desktop-social-trigger .widget-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .desktop-social-trigger .cycle-icon {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        color: #ffffff;
+    }
+    .desktop-social-trigger .cycle-icon.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .desktop-social-dropdown {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        background-color: #f6efe2;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 8px 30px rgba(140, 45, 25, 0.15);
+        border-radius: 16px;
+        width: 220px;
+        padding: 12px;
+        display: none;
+        z-index: 1010;
+        animation: dropdownFadeIn 0.25s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    .desktop-social-container.active .desktop-social-dropdown {
+        display: block;
+    }
+    .desktop-social-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .desktop-social-item {
+        display: block;
+        padding: 8px 12px;
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    .desktop-social-item:hover {
+        background-color: rgba(140, 45, 25, 0.06);
+        color: var(--accent);
+        padding-left: 16px;
+    }
+
+    /* Animation Keyframes */
+    @keyframes logoFadeInDesktop {
+        from {
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    @keyframes titleFadeInDesktop {
+        from {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    @keyframes dropdownFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-8px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    /* Desktop Fixed Bottom Footer Bar styling */
+    .desktop-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: rgba(246, 239, 226, 0.92); /* Translucent soft parchment */
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(140, 45, 25, 0.15);
+        box-shadow: 0 -10px 30px rgba(140, 45, 25, 0.04);
+        padding: 0 48px; /* Matched side padding with header and grid wrapper */
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+
+    .desktop-footer-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .desktop-footer-logo {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        /* Exact color match filter for brand maroon color #8c2d19 */
+        filter: brightness(0) saturate(100%) invert(20%) sepia(60%) saturate(2500%) hue-rotate(345deg) brightness(75%) contrast(92%) drop-shadow(0 1px 3px rgba(140, 45, 25, 0.15));
+    }
+
+    .desktop-footer-title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+
+    .desktop-footer-english-name {
+        font-family: var(--font-heading);
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: var(--accent); /* Maroon red */
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .desktop-footer-middle {
+        flex: 1;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .desktop-footer-disclaimer {
+        font-size: 0.74rem;
+        color: var(--text-muted);
+        line-height: 1.35;
+        margin: 0;
+    }
+
+    .desktop-footer-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .desktop-footer-contact {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .desktop-footer-contact:hover {
+        color: var(--accent-hover);
+    }
+
+    .desktop-footer-icon {
+        width: 14px;
+        height: 14px;
+        color: var(--accent);
+    }
+}
+
+
+

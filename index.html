@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shri Siddhi Subrahmanyeshwara Devasthanam</title>
+    <!-- Google Fonts: Cinzel for headings/temple name, Outfit for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Benne&family=Cinzel:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Permanent Shrinking Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Large Header (Visible at top) -->
+            <div class="header-large" id="header-large">
+                <img src="rangoli.png" alt="Rangoli Left" class="rangoli-edge rangoli-left" draggable="false">
+                <img src="rangoli.png" alt="Rangoli Right" class="rangoli-edge rangoli-right" draggable="false">
+                <div class="large-logo">
+                    <img src="logo.png" alt="Temple Logo" class="logo-img" draggable="false">
+                </div>
+                <h1 class="large-name">Shri Siddhi<br>Subrahmanyeshwara<br>Devasthanam</h1>
+                <div class="kannada-name">ಶ್ರೀ ಸಿದ್ಧಿ ಸುಬ್ರಹ್ಮಣ್ಯೇಶ್ವರ ದೇವಸ್ಥಾನ</div>
+            </div>
+
+            <!-- Small Header (Fades in on scroll) -->
+            <div class="header-small" id="header-small">
+                <div class="small-logo">
+                    <img src="logo.png" alt="Temple Logo" class="logo-img" draggable="false">
+                </div>
+                <span class="small-name">Shri Siddhi Subrahmanyeshwara Devasthanam</span>
+            </div>
+
+            <!-- Desktop Header Bar (Visible only on desktop) -->
+            <div class="header-desktop" id="header-desktop">
+                <div class="desktop-left">
+                    <img src="logo.png" alt="Temple Logo" class="desktop-logo" draggable="false">
+                    <div class="desktop-title-group">
+                        <div class="desktop-kannada-name">ಶ್ರೀ ಸಿದ್ಧಿ ಸುಬ್ರಹ್ಮಣ್ಯೇಶ್ವರ ದೇವಸ್ಥಾನ</div>
+                        <h1 class="desktop-english-name">Shri Siddhi Subrahmanyeshwara Devasthanam</h1>
+                    </div>
+                </div>
+                <div class="desktop-right">
+                    <button class="desktop-ebook-btn" id="desktop-ebook-btn" aria-label="eBook">
+                        <svg viewBox="0 0 24 24" class="desktop-btn-icon">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" fill="currentColor" />
+                        </svg>
+                        <span class="desktop-btn-label">eBook</span>
+                    </button>
+                    <!-- Integrated Social Trigger and Dropdown Menu inside the bar -->
+                    <div class="desktop-social-container" id="desktop-social-container">
+                        <button class="desktop-social-trigger" id="desktop-social-trigger" aria-label="Social Media">
+                            <div class="cycling-icons" id="desktop-cycling-icons">
+                                <!-- WhatsApp -->
+                                <div class="cycle-icon active">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.8 14.12c-.24.67-1.37 1.29-1.9 1.34-.48.05-.97.08-3.13-.77-2.76-1.09-4.53-3.92-4.67-4.1-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.28.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.78 1.9.85 2.04.07.14.12.31.02.51-.1.2-.15.3-.3.47-.15.17-.32.39-.46.52-.16.15-.33.31-.14.63.19.31.85 1.4 1.83 2.28 1.26 1.13 2.32 1.48 2.65 1.64.33.16.52.12.72-.11.2-.23.85-.99.98-1.29.13-.3.26-.25.44-.18.18.07 1.15.54 1.35.64.2.1.33.15.38.24.05.09.05.52-.19 1.19z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <!-- Call -->
+                                <div class="cycle-icon">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21a.96.96 0 0 0 .25-1.01c-.36-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <!-- Facebook -->
+                                <div class="cycle-icon">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <!-- Instagram -->
+                                <div class="cycle-icon">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <!-- X -->
+                                <div class="cycle-icon">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <!-- YouTube -->
+                                <div class="cycle-icon">
+                                    <svg viewBox="0 0 24 24" class="widget-icon">
+                                        <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.517 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                        <div class="desktop-social-dropdown" id="desktop-social-dropdown">
+                            <div class="desktop-social-grid">
+                                <a href="https://www.facebook.com/profile.php?id=61582585715012" target="_blank" class="desktop-social-item" rel="noopener">Facebook</a>
+                                <a href="https://www.instagram.com/siddhisubrahmanya/" target="_blank" class="desktop-social-item" rel="noopener">Instagram</a>
+                                <a href="https://x.com/SSSDevasthanam" target="_blank" class="desktop-social-item" rel="noopener">X (Twitter)</a>
+                                <a href="https://www.youtube.com/@SiddhiSubrahmanyeshwara" target="_blank" class="desktop-social-item" rel="noopener">YouTube</a>
+                                <a href="https://www.google.com/maps/place/Shri+Siddhi+Subrahmanyeshwara+Devasthanam/@12.9333963,77.5625359,19.33z/data=!4m6!3m5!1s0x3bae151f44881cdb:0x71efdbd5d8e1c023!8m2!3d12.9338525!4d77.5623417!16s%2Fg%2F11pldtvfnt" target="_blank" class="desktop-social-item" rel="noopener">Google Maps</a>
+                                <a href="https://wa.me/917975617720" target="_blank" class="desktop-social-item" rel="noopener">WhatsApp Chat</a>
+                                <a href="https://chat.whatsapp.com/GzshGPKqmWd7y5Tw3AX9ZS" target="_blank" class="desktop-social-item" rel="noopener">WhatsApp Group</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Panel -->
+    <main class="content-wrapper">
+        <!-- Spacer section that mimics the header's initial 50vh height -->
+        <div class="header-spacer"></div>
+
+        <!-- Home Section -->
+                <!-- Middle Column (Home, eBook, and Footer scroll together on desktop) -->
+        <div class="desktop-middle-column">
+<section id="hero" class="mobile-section active-section">
+            <div class="container">
+
+                <!-- 1. Photos Slideshow rounded corner space -->
+                <div class="slideshow-container">
+                    <div class="slides">
+                        <div class="slide active">
+                            <!-- Monochromatic placeholder visual for Slide 1 -->
+                            <div class="slide-content slide-img-1"></div>
+                        </div>
+                        <div class="slide">
+                            <!-- Monochromatic placeholder visual for Slide 2 -->
+                            <div class="slide-content slide-img-2"></div>
+                        </div>
+                        <div class="slide">
+                            <!-- Monochromatic placeholder visual for Slide 3 -->
+                            <div class="slide-content slide-img-3"></div>
+                        </div>
+                    </div>
+                    <!-- Dots indicating slide index -->
+                    <div class="slideshow-dots" id="slideshow-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <!-- Translucent Button "View Album" -->
+                    <button class="slideshow-album-btn" id="view-album-trigger">View Album</button>
+                </div>
+
+                <!-- 2. Notice Board (Rounded corner card) -->
+                <div class="notice-board-card glass-card">
+                    <div class="notice-header">
+                        <h3 class="notice-title">Notice Board</h3>
+                        <span class="notice-indicator">Announcements</span>
+                    </div>
+                    <ul class="notice-list-container" id="notice-list-container">
+                        <li>
+                            <span class="bullet-notice">✦</span>
+                            <div class="notice-item-content">
+                                Important announcements, upcoming festival dates, and temple notices will be posted
+                                here. Please check back regularly for updates.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Timings (No card style) -->
+                <div class="timings-block-no-card">
+                    <h3 class="timings-block-title">Temple Timings</h3>
+                    <div class="timings-content-grid">
+                        <div class="timings-column">
+                            <span class="timing-label">General Days</span>
+                            <p class="timing-time">6:00 AM – 11:00 AM</p>
+                            <p class="timing-time">6:00 PM – 8:00 PM</p>
+                        </div>
+                        <div class="timings-column">
+                            <span class="timing-label">Tuesdays & Special Days</span>
+                            <p class="timing-time">6:00 AM – 12:30 PM</p>
+                            <p class="timing-time">6:00 PM – 8:30 PM</p>
+                        </div>
+                    </div>
+                    <p class="abhisheka-announcement">Daily Abhisheka will be performed at 7:30 AM</p>
+                </div>
+
+                <!-- 4. About the Temple (Rounded card) -->
+                <div class="about-temple-card glass-card">
+                    <h3 class="card-title-sacred">About the Temple</h3>
+                    <div class="about-text-container" id="about-text-container">
+                        <p>Shri Siddhi Subrahmanyeshwara Devasthanam is a nearly 50-year-old Hindu temple located in
+                            Vidyapeeta Layout, Bengaluru. The temple is dedicated to Lord Shri Siddhi Subrahmanyeshwara
+                            Swamy and also houses the sacred shrine of Shri Samba Sadashiva. Alongside the presiding
+                            deities, the sacred space features beautifully sculpted Prakara Vigrahas crafted by
+                            traditional Mysore artisans. For nearly five decades, the temple has been a revered place of
+                            worship, devotion, and spiritual service for devotees from Bengaluru and beyond.</p>
+                    </div>
+                </div>
+
+                <!-- 5. Poojas preview (Rounded card style with button) -->
+                <div class="poojas-card glass-card">
+                    <h3 class="card-title-sacred">Temple Sevas & Poojas</h3>
+                    <p class="card-text-body">
+                        At Shri Siddhi Subrahmanyeshwara Devasthanam, Nitya Abhishekam is offered daily to Sri Siddhi
+                        Subrahmanyeshwara Swamy and Sri Samba Sadashiva Swamy, followed by traditional poojas, alongside
+                        sacred observances such as Skanda Shashti, Krittika Nakshatra, Sankashtahara Chaturthi, Pradosha
+                        Pooja and Sri Satyanarayana Pooja. Every Tuesday, the beloved day of Lord Subrahmanya, is
+                        observed as Mangalavara Seva with Subrahmanya Vishesharchane and Maha Abhishekam
+                        <button class="pooja-dates-btn" id="see-pooja-dates-btn">See Pooja Dates</button>
+                </div>
+
+                <!-- 6. Temple Trust Works (No card style) -->
+                <div class="trust-works-no-card">
+                    <h3 class="trust-works-title">Temple Trust</h3>
+                    <p class="trust-works-description">
+                        Om Shri Siddhi Subramanya Swamy Devalaya Trust® is the registered charitable trust responsible
+                        for the administration, preservation, and development of Shri Siddhi Subrahmanyeshwara
+                        Devasthanam. Established to ensure the continued growth of the temple and the preservation of
+                        its religious heritage, the Trust oversees the temple's daily administration, maintenance,
+                        religious activities, and community welfare initiatives. The Trust is committed to serving
+                        devotees, safeguarding the temple's legacy, and promoting the cultural and spiritual values of
+                        Sanatana Dharma for future generations.
+                    </p>
+                </div>
+
+                <!-- 7. Temple Purohits (Image placeholders + description) -->
+                <div class="purohits-section">
+                    <h3 class="purohits-section-title">Temple Purohits</h3>
+                    <div class="purohits-grid-container">
+                        <!-- Purohit 1 -->
+                        <div class="purohit-card glass-card">
+                            <div class="purohit-avatar-space">
+                                <div class="purohit-avatar">
+                                    <img src="purohit1.png" alt="Sri Pramodh Kashyap S.P." class="purohit-img"
+                                        draggable="false">
+                                </div>
+                            </div>
+                            <div class="purohit-description-space">
+                                <h4 class="purohit-name">Sri Pramodh Kashyap</h4>
+                                <p class="purohit-bio">
+                                    Sri Pramodh Kashyap S.P. is with a deep interest in Vedic wisdom, astrology, and
+                                    spiritual practices. He also practices holistic healing methods, including
+                                    Acupressure, Reiki, and mind-calming therapies.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Purohit 2 -->
+                        <div class="purohit-card glass-card">
+                            <div class="purohit-avatar-space">
+                                <div class="purohit-avatar">
+                                    <img src="purohit2.png" alt="Sri Prapul Kashyap S.P." class="purohit-img"
+                                        draggable="false">
+                                </div>
+                            </div>
+                            <div class="purohit-description-space">
+                                <h4 class="purohit-name">Sri Prapul Kashyap</h4>
+                                <p class="purohit-bio">
+                                    With a deep understanding of Vedic traditions and temple rituals, Sri Prapul Kashyap
+                                    S.P. serves devotees with faith, humility, and dedication to spiritual well-being.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Trust Details & Contribution (Wood embossed card) -->
+                <div class="trust-details-card dark-accent-card wood-card">
+                    <h3 class="trust-title-large">Om Sri Siddhi Subramanya Swamy Devalaya Trust ®</h3>
+                    <p class="trust-legal-address">#480/1, VIDYAPEETA LAYOUT, THYAGARAJANAGAR, BENGALURU - 560028</p>
+
+                    <div class="trust-bank-info">
+                        <div class="bank-row-detail">
+                            <span class="info-label">Darpan ID:</span>
+                            <span class="info-value">KA/2026/1060441</span>
+                        </div>
+                        <div class="bank-row-detail">
+                            <span class="info-label">Bank Name:</span>
+                            <span class="info-value">HDFC Bank</span>
+                        </div>
+                        <div class="bank-row-detail">
+                            <span class="info-label">IFSC Code:</span>
+                            <span class="info-value">HDFC0002858 <span class="branch-label">(Banashankari 2Nd Stage
+                                    Branch)</span></span>
+                        </div>
+                        <div class="bank-row-detail">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">srisidhisubrahmanyadevasthanam@gmail.com</span>
+                        </div>
+                        <div class="bank-row-detail">
+                            <span class="info-label">Phone:</span>
+                            <span class="info-value">7975617720</span>
+                        </div>
+                    </div>
+
+                    <div class="trust-donations-grid">
+                        <button class="donation-action-btn hundi-button"
+                            onclick="alert('Thank you for contributing to the Temple Hundi.')">Hundi</button>
+                        <button class="donation-action-btn annapurna-button"
+                            onclick="alert('Thank you for donating to Annadanam (Free Meals).')">Annapurna</button>
+                    </div>
+
+                    <p class="trust-devotion-notice">
+                        All the money is used with devotion for temple uses and development only.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+<!-- eBook Section -->
+        <section id="ebook" class="mobile-section">
+            <div class="container">
+                <h2 class="sacred-heading">Sacred eBooks</h2>
+                <p class="sacred-lead">Access digital publications, daily stotrams, and prayers.</p>
+
+                <div class="ebook-coming-soon glass-card">
+                    <h3>eBooks Coming Soon</h3>
+                    <p>Thank you for checking! We are currently compiling digital copies of our sacred stotrams, daily
+                        prayers, and scriptures. Our eBooks will be published and made available for download here soon.
+                        Please check back later.</p>
+                </div>
+            </div>
+        </section>
+
+        </div> <!-- End of .desktop-middle-column -->
+
+
+<!-- Album Section -->
+        <section id="album" class="mobile-section">
+            <div class="container">
+                <div class="section-badge">Sacred Visuals</div>
+                <h2 class="sacred-heading">Devotional Album</h2>
+                <p class="sacred-lead">A visual journey through the temple's daily rituals, major festivals, and holy
+                    surroundings.</p>
+
+                <div class="album-grid" id="temple-gallery-container">
+                    <!-- Column 1 Items -->
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-medium">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-extratall">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-short">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 Items -->
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-tall">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-medium">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="album-card glass-card">
+                        <div class="album-img-placeholder h-short">
+                            <svg viewBox="0 0 24 24" class="album-svg">
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View More Button Container -->
+                <div class="view-more-container">
+                    <a href="https://www.google.com/maps/place/Shri+Siddhi+Subrahmanyeshwara+Devasthanam/@12.9333963,77.5625359,19.33z/data=!4m6!3m5!1s0x3bae151f44881cdb:0x71efdbd5d8e1c023!8m2!3d12.9338525!4d77.5623417!16s%2Fg%2F11pldtvfnt"
+                        target="_blank" rel="noopener" class="view-more-btn">
+                        <span>View More Images</span>
+                        <svg viewBox="0 0 24 24" class="btn-arrow-icon">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+<!-- Poojas Section -->
+        <section id="poojas" class="mobile-section">
+            <div class="container">
+                <h2 class="sacred-heading">Pujas & Sevas</h2>
+                <p class="sacred-lead">Participate in daily offerings and customized pujas. Select a date and book
+                    online to receive blessings.</p>
+
+                <!-- 1. Current Month Calendar Container -->
+                <div class="pooja-calendar-card glass-card" id="pooja-calendar-container">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+
+                <div class="pooja-list">
+                    <!-- 2. Sri Siddhi Subrahmanyeshwara Swamy Sevas -->
+                    <div class="seva-group-card glass-card">
+                        <h3 class="seva-group-title">Sri Siddhi Subrahmanyeshwara Swamy Sevas</h3>
+                        <div class="seva-list-container">
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Abhishekam</h4>
+                                    <span class="seva-price">₹151</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn" onclick="bookSeva('Abhishekam', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Skanda Shashti</h4>
+                                    <span class="seva-price">₹101</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <span class="seva-date-display" data-seva="Skanda Shashti">Loading...</span>
+                                    <button class="seva-book-btn" onclick="bookSeva('Skanda Shashti', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Kritika</h4>
+                                    <span class="seva-price">₹101</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <span class="seva-date-display" data-seva="Kritika">Loading...</span>
+                                    <button class="seva-book-btn" onclick="bookSeva('Kritika', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Special Observances -->
+                    <div class="seva-group-card glass-card">
+                        <h3 class="seva-group-title">Special Observances</h3>
+                        <div class="seva-list-container">
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Sankashtahara Chaturthi</h4>
+                                    <span class="seva-price">₹101</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <span class="seva-date-display"
+                                        data-seva="Sankashtahara Chaturthi">Loading...</span>
+                                    <button class="seva-book-btn"
+                                        onclick="bookSeva('Sankashtahara Chaturthi', this)">Seva Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Satyanarayana Pooja</h4>
+                                    <span class="seva-price">₹101</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <span class="seva-date-display" data-seva="Satyanarayana Pooja">Loading...</span>
+                                    <button class="seva-book-btn" onclick="bookSeva('Satyanarayana Pooja', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Sri Samba Sadashiva Swamy Sevas -->
+                    <div class="seva-group-card glass-card">
+                        <h3 class="seva-group-title">Sri Samba Sadashiva Swamy Sevas</h3>
+                        <div class="seva-list-container">
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Ashtotra</h4>
+                                    <span class="seva-price">₹25</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn" onclick="bookSeva('Ashtotra', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Bilva Archane</h4>
+                                    <span class="seva-price">₹25</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn" onclick="bookSeva('Bilva Archane', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Pradosha Pooja</h4>
+                                    <span class="seva-price">₹101</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <span class="seva-date-display" data-seva="Pradosha Pooja">Loading...</span>
+                                    <button class="seva-book-btn" onclick="bookSeva('Pradosha Pooja', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Sahasranama</h4>
+                                    <span class="seva-price">₹501</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn" onclick="bookSeva('Sahasranama', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Rudrabhisheka</h4>
+                                    <span class="seva-price">₹501</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn" onclick="bookSeva('Rudrabhisheka', this)">Seva
+                                        Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Lagunyasa Rudrabhisheka</h4>
+                                    <span class="seva-price">₹1001</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn"
+                                        onclick="bookSeva('Lagunyasa Rudrabhisheka', this)">Seva Sankalpa</button>
+                                </div>
+                            </div>
+                            <div class="seva-item-row">
+                                <div class="seva-info">
+                                    <h4 class="seva-name">Mahanyasa Rudrabhisheka</h4>
+                                    <span class="seva-price">₹5001</span>
+                                </div>
+                                <div class="seva-actions">
+                                    <input type="date" class="seva-date-picker" />
+                                    <button class="seva-book-btn"
+                                        onclick="bookSeva('Mahanyasa Rudrabhisheka', this)">Seva Sankalpa</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="container footer-container">
+                <!-- 1. Copyright and Trust Note -->
+                <p class="footer-copyright-text">
+                    Copyright &copy; 2026 Om Sri Siddhi Subramanya Swamy Devalaya Trust ®.<br>
+                    All Rights Reserved.<br>
+                    Designed and maintained by the Trust.
+                </p>
+
+                <!-- 2. Left-justified contact info with icons -->
+                <div class="footer-contact-info">
+                    <a href="tel:+917975617720" class="footer-contact-link">
+                        <svg viewBox="0 0 24 24" class="footer-icon">
+                            <path
+                                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21a.96.96 0 0 0 .25-1.01c-.36-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+                                fill="currentColor" />
+                        </svg>
+                        <span>+91 7975617720</span>
+                    </a>
+                    <a href="mailto:srisidhisubrahmanyadevasthanam@gmail.com" class="footer-contact-link">
+                        <svg viewBox="0 0 24 24" class="footer-icon">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                fill="currentColor" />
+                        </svg>
+                        <span>srisidhisubrahmanyadevasthanam@gmail.com</span>
+                    </a>
+                </div>
+
+                <!-- 3. Small Logo and Temple Name in 3 lines, left-justified -->
+                <div class="footer-identity-section">
+                    <img src="logo.png" alt="Temple Logo" class="footer-logo" draggable="false">
+                    <div class="footer-name-container">
+                        <span class="footer-name-line">Shri Siddhi</span>
+                        <span class="footer-name-line">Subrahmanyeshwara</span>
+                        <span class="footer-name-line">Devasthanam</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bottom Permanent Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="#hero" class="bottom-nav-item active" data-tab="hero">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24" class="nav-icon">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor" />
+                    </svg>
+                </div>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="#album" class="bottom-nav-item" data-tab="album">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24" class="nav-icon">
+                        <path
+                            d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H9l2-3zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <span class="nav-label">Album</span>
+            </a>
+            <a href="#poojas" class="bottom-nav-item" data-tab="poojas">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24" class="nav-icon">
+                        <!-- Custom solid/filled Diya icon matching layout theme -->
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 1.5C9.5 5 9.5 8.5 12 10.5c2.5-2 2.5-5.5 0-9zm0 4.5c-0.6 0.6-0.6 1.4 0 2c0.6-0.6 0.6-1.4 0-2zm-9 6h6c1.5-1 2.5-1.5 3-1.5s1.5 0.5 3 1.5h6c0.55 0 1 0.45 1 1v2c0 0.55-0.45 1-1 1H3c-0.55 0-1-0.45-1-1v-2c0-0.55 0.45-1 1-1zm.5 5.5c0 3.5 3.8 5.5 8.5 5.5s8.5-2 8.5-5.5H3.5z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <span class="nav-label">Poojas</span>
+            </a>
+            <a href="#ebook" class="bottom-nav-item" data-tab="ebook">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24" class="nav-icon">
+                        <path
+                            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <span class="nav-label">eBook</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Morphing Contact Card & Floating Square Rounded Button -->
+    <div class="social-widget" id="social-widget">
+
+        <!-- Expanded social menu card (morphs from the button) -->
+        <div class="social-menu-card" id="social-menu-card">
+            <div class="social-card-body">
+                <!-- 1. Main Options View -->
+                <div class="social-view-main" id="social-view-main">
+                    <!-- Row 1: Social Media Grid (Facebook, Instagram, X, YouTube, Google Maps) -->
+                    <div class="social-row-1-grid">
+                        <a href="https://www.facebook.com/profile.php?id=61582585715012" target="_blank" class="grid-social-item" rel="noopener">
+                            <div class="grid-icon-circle">
+                                <svg viewBox="0 0 24 24" class="row-icon-svg">
+                                    <path
+                                        d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <span class="grid-social-label">Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/siddhisubrahmanya/" target="_blank" class="grid-social-item" rel="noopener">
+                            <div class="grid-icon-circle">
+                                <svg viewBox="0 0 24 24" class="row-icon-svg">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <span class="grid-social-label">Instagram</span>
+                        </a>
+                        <a href="https://x.com/SSSDevasthanam" target="_blank" class="grid-social-item" rel="noopener">
+                            <div class="grid-icon-circle">
+                                <svg viewBox="0 0 24 24" class="row-icon-svg">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <span class="grid-social-label">X</span>
+                        </a>
+                        <a href="https://www.youtube.com/@SiddhiSubrahmanyeshwara" target="_blank" class="grid-social-item" rel="noopener">
+                            <div class="grid-icon-circle">
+                                <svg viewBox="0 0 24 24" class="row-icon-svg">
+                                    <path
+                                        d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.517 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <span class="grid-social-label">YouTube</span>
+                        </a>
+                        <a href="https://www.google.com/maps/place/Shri+Siddhi+Subrahmanyeshwara+Devasthanam/@12.9333963,77.5625359,19.33z/data=!4m6!3m5!1s0x3bae151f44881cdb:0x71efdbd5d8e1c023!8m2!3d12.9338525!4d77.5623417!16s%2Fg%2F11pldtvfnt" target="_blank"
+                            class="grid-social-item" rel="noopener">
+                            <div class="grid-icon-circle">
+                                <svg viewBox="0 0 24 24" class="row-icon-svg">
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <span class="grid-social-label">Maps</span>
+                        </a>
+                    </div>
+
+                    <!-- Row 2: WhatsApp and Call Buttons (labels inside the button) -->
+                    <div class="social-row-2-buttons">
+                        <button class="row-action-btn whatsapp-action-btn" id="social-card-whatsapp-trigger">
+                            <svg viewBox="0 0 24 24" class="btn-icon-svg">
+                                <path
+                                    d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.8 14.12c-.24.67-1.37 1.29-1.9 1.34-.48.05-.97.08-3.13-.77-2.76-1.09-4.53-3.92-4.67-4.1-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.28.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.78 1.9.85 2.04.07.14.12.31.02.51-.1.2-.15.3-.3.47-.15.17-.32.39-.46.52-.16.15-.33.31-.14.63.19.31.85 1.4 1.83 2.28 1.26 1.13 2.32 1.48 2.65 1.64.33.16.52.12.72-.11.2-.23.85-.99.98-1.29.13-.3.26-.25.44-.18.18.07 1.15.54 1.35.64.2.1.33.15.38.24.05.09.05.52-.19 1.19z"
+                                    fill="currentColor" />
+                            </svg>
+                            <span>WhatsApp</span>
+                        </button>
+                        <a href="tel:+917975617720" class="row-action-btn call-action-btn">
+                            <svg viewBox="0 0 24 24" class="btn-icon-svg">
+                                <path
+                                    d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21a.96.96 0 0 0 .25-1.01c-.36-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+                                    fill="currentColor" />
+                            </svg>
+                            <span>Call Us</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. WhatsApp Sub-Menu View -->
+                <div class="social-view-whatsapp" id="social-view-whatsapp" style="display: none;">
+                    <!-- Stacked Chat and Group Buttons (One Above Other) -->
+                    <a href="https://wa.me/917975617720" target="_blank" class="row-action-btn wa-chat-btn"
+                        rel="noopener">
+                        <svg viewBox="0 0 24 24" class="btn-icon-svg">
+                            <path
+                                d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.8 14.12c-.24.67-1.37 1.29-1.9 1.34-.48.05-.97.08-3.13-.77-2.76-1.09-4.53-3.92-4.67-4.1-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.28.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.78 1.9.85 2.04.07.14.12.31.02.51-.1.2-.15.3-.3.47-.15.17-.32.39-.46.52-.16.15-.33.31-.14.63.19.31.85 1.4 1.83 2.28 1.26 1.13 2.32 1.48 2.65 1.64.33.16.52.12.72-.11.2-.23.85-.99.98-1.29.13-.3.26-.25.44-.18.18.07 1.15.54 1.35.64.2.1.33.15.38.24.05.09.05.52-.19 1.19z"
+                                fill="currentColor" />
+                        </svg>
+                        <span>WhatsApp Chat</span>
+                    </a>
+                    <a href="https://chat.whatsapp.com/GzshGPKqmWd7y5Tw3AX9ZS" target="_blank"
+                        class="row-action-btn wa-group-btn" rel="noopener">
+                        <svg viewBox="0 0 24 24" class="btn-icon-svg">
+                            <path
+                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                                fill="currentColor" />
+                        </svg>
+                        <span>WhatsApp Group</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Square trigger button (rests collapsed) -->
+        <button class="social-trigger-btn" id="social-trigger-btn" aria-label="Open social options">
+            <div class="cycling-icons" id="cycling-icons">
+                <!-- WhatsApp -->
+                <div class="cycle-icon active">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.8 14.12c-.24.67-1.37 1.29-1.9 1.34-.48.05-.97.08-3.13-.77-2.76-1.09-4.53-3.92-4.67-4.1-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.28.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.78 1.9.85 2.04.07.14.12.31.02.51-.1.2-.15.3-.3.47-.15.17-.32.39-.46.52-.16.15-.33.31-.14.63.19.31.85 1.4 1.83 2.28 1.26 1.13 2.32 1.48 2.65 1.64.33.16.52.12.72-.11.2-.23.85-.99.98-1.29.13-.3.26-.25.44-.18.18.07 1.15.54 1.35.64.2.1.33.15.38.24.05.09.05.52-.19 1.19z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <!-- Call -->
+                <div class="cycle-icon">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21a.96.96 0 0 0 .25-1.01c-.36-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <!-- Facebook -->
+                <div class="cycle-icon">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <!-- Instagram -->
+                <div class="cycle-icon">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <!-- X (formerly Twitter) -->
+                <div class="cycle-icon">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <!-- YouTube -->
+                <div class="cycle-icon">
+                    <svg viewBox="0 0 24 24" class="widget-icon">
+                        <path
+                            d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.517 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Desktop Permanent Bottom Footer -->
+    <footer class="desktop-footer" id="desktop-footer">
+        <div class="desktop-footer-left">
+            <img src="logo.png" alt="Temple Logo" class="desktop-footer-logo" draggable="false">
+            <div class="desktop-footer-title-group">
+                <span class="desktop-footer-english-name">SHRI SIDDHI SUBRAHMANYESHWARA<br>DEVASTHANAM</span>
+            </div>
+        </div>
+        <div class="desktop-footer-middle">
+            <p class="desktop-footer-disclaimer">
+                Copyright &copy; 2026 Om Sri Siddhi Subramanya Swamy Devalaya Trust &reg;. All Rights Reserved.
+                <br>
+                Designed and maintained by the Trust.
+            </p>
+        </div>
+        <div class="desktop-footer-right">
+            <a href="tel:+917975617720" class="desktop-footer-contact">
+                <svg viewBox="0 0 24 24" class="desktop-footer-icon"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21a.96.96 0 0 0 .25-1.01c-.36-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" fill="currentColor"/></svg>
+                <span>+91 79756 17720</span>
+            </a>
+            <a href="mailto:srisidhisubrahmanyadevasthanam@gmail.com" class="desktop-footer-contact">
+                <svg viewBox="0 0 24 24" class="desktop-footer-icon"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                <span>srisidhisubrahmanyadevasthanam@gmail.com</span>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>
